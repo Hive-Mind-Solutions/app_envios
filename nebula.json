@@ -1,0 +1,36 @@
+{
+  "$schema": "https://nebula.cloud/schemas/nebula.json",
+  "projectId": "43898db8-2954-480a-9700-62fd0b83635e",
+  "apiUrl": "https://nebula-api-hive-dev.azurewebsites.net/api",
+  "project": {
+    "name": "app_asignaciones",
+    "description": "Asignar un proyecto"
+  },
+  "stack": {
+    "technologies": [
+      "Python",
+      "TypeScript",
+      "React",
+      "FastAPI",
+      "TailwindCSS"
+    ],
+    "allowedLibs": "",
+    "prohibitedLibs": [
+      "JQUERY"
+    ],
+    "description": "",
+    "usageRules": "- siempre que hagamos requests usamos @lis-data-solutions/lis-query, si hay algún problema y no se encuentra, tanstack query\n- las rutas de la aplicación las hacemos con tanstack router\n- usaremos SQL alchemy como ORM."
+  },
+  "rules": {
+    "strictTypes": true,
+    "namingStyles": [],
+    "booleanPrefixes": true,
+    "customRules": "- Cualquier archivo con más de 300 líneas de código, lo evaluamos para dividirlo en varios.\n- No poner co-author en los commits",
+    "ruleValues": {
+      "react_memo": true
+    }
+  },
+  "learningMode": {
+    "defaultRole": "mid"
+  }
+}

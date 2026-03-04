@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/block-random-md.js\""
+          }
+        ],
+        "description": "Bloquea la creación de archivos .md innecesarios — usa ubicaciones de documentación adecuadas"
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/dev-server-separate-terminal.js\""
+          }
+        ],
+        "description": "Bloquea servidores de desarrollo en la sesión actual — usa una terminal separada"
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/long-command-separate-terminal.js\""
+          }
+        ],
+        "description": "Recordatorio para ejecutar comandos largos en una terminal separada"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/console-log-warning.js\""
+          }
+        ],
+        "description": "Advierte sobre sentencias console.log tras ediciones"
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/prettier-format.js\""
+          }
+        ],
+        "description": "Formatea automáticamente archivos JS/TS con Prettier tras ediciones"
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/typescript-check.js\""
+          }
+        ],
+        "description": "Ejecuta verificación de TypeScript tras editar archivos .ts/.tsx"
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/continuous-learning.js\""
+          }
+        ],
+        "description": "Sugiere ejecutar /learn tras sesiones productivas"
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/final-console-audit.js\""
+          }
+        ],
+        "description": "Auditoría final de console.log en archivos modificados al terminar sesión"
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/memory-session-end.js\""
+          }
+        ],
+        "description": "Persiste resumen de sesión para la próxima vez"
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/subscription-usage-send.js\""
+          }
+        ],
+        "description": "Reporta el uso de suscripción Claude a Nebula"
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/memory-pre-compact.js\""
+          }
+        ],
+        "description": "Registra evento de compactación en el log de actividad"
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \".claude/hooks/memory-session-start.js\""
+          }
+        ],
+        "description": "Carga resumen de la sesión anterior al iniciar"
+      }
+    ]
+  }
+}
